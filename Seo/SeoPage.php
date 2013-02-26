@@ -10,8 +10,6 @@
 
 namespace Sonata\SeoBundle\Seo;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-
 /**
  *
  * http://en.wikipedia.org/wiki/Meta_element
@@ -24,6 +22,12 @@ class SeoPage implements SeoPageInterface
     protected $metas;
 
     protected $htmlAttributes;
+
+    protected $linkCanonical;
+
+    protected $separator;
+
+    protected $headAttributes;
 
     /**
      * {@inheritdoc}
@@ -40,6 +44,8 @@ class SeoPage implements SeoPageInterface
         );
 
         $this->headAttributes = array();
+        $this->linkCanonical = '';
+        $this->separator = ' ';
     }
 
     /**
@@ -48,6 +54,16 @@ class SeoPage implements SeoPageInterface
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addTitle($title)
+    {
+        $this->title = $title . $this->separator . $this->title;
 
         return $this;
     }
@@ -90,19 +106,25 @@ class SeoPage implements SeoPageInterface
         $this->metas = array();
 
         foreach ($metadatas as $type => $metas) {
-            if (null !== $metas || !empty($metas)) {
-	            foreach ($metas as $name => $meta) {
-	                list($content, $extras) = $this->normalize($meta);
-	
-	                $this->addMeta($type, $name, $content, $extras);
-	            }
-	            
+            if (!is_array($metas)) {
+                throw new \RuntimeException('$metas must be an array');
+            }
+
+            foreach ($metas as $name => $meta) {
+                list($content, $extras) = $this->normalize($meta);
+
+                $this->addMeta($type, $name, $content, $extras);
             }
         }
 
         return $this;
     }
 
+    /**
+     * @param mixed $meta
+     *
+     * @return array
+     */
     private function normalize($meta)
     {
         if (is_string($meta)) {
@@ -138,5 +160,31 @@ class SeoPage implements SeoPageInterface
     public function getHtmlAttributes()
     {
         return $this->htmlAttributes;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLinkCanonical($link)
+    {
+        $this->linkCanonical = $link;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLinkCanonical()
+    {
+        return $this->linkCanonical;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSeparator($separator)
+    {
+        $this->separator = $separator;
     }
 }
