@@ -1,11 +1,16 @@
 {
-    "name": "sonata-project/seo-bundle",
+    "name": "rmzamora/seo-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony SonataSeoBundle",
-    "keywords": ["seo", "sonata"],
+    "description": "Symfony SonataSeoBundle rmzamora forked",
+    "keywords": ["seo", "sonata", "rmzamora forked"],
     "homepage": "http://sonata-project.org/bundles/seo",
     "license": "MIT",
     "authors": [
+        {
+            "name": "Mell M. Zamora",
+            "email": "me@mellzamora.com",
+            "homepage": "http://mellzamora.com"
+        },
         {
             "name": "Thomas Rabaix",
             "email": "thomas.rabaix@sonata-project.org",
@@ -22,11 +27,8 @@
         "twig/twig": "*"
     },
     "require-dev": {
-        "sonata-project/block-bundle": "~2.2,>=2.2.7",
-        "sonata-project/admin-bundle": "~2.2"
-    },
-    "suggest": {
-        "sonata-project/block-bundle": "Allows you to use SEO friendly blocks"
+        "rmzamora/block-bundle": "~2.3",
+        "rmzamora/admin-bundle": "~2.3"
     },
     "autoload": {
         "psr-0": { "Sonata\\SeoBundle": "" }
