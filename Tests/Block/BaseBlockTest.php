@@ -11,6 +11,9 @@
 
 namespace Sonata\SeoBundle\Tests\Block;
 
+/**
+ * @author Sylvain Deloux <sylvain.deloux@fullsix.com>
+ */
 abstract class BaseBlockTest extends \PHPUnit_Framework_TestCase
 {
     /**

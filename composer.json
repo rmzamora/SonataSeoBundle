@@ -30,6 +30,9 @@
         "rmzamora/block-bundle": "~2.3",
         "rmzamora/admin-bundle": "~2.3"
     },
+    "suggest": {
+        "knplabs/knp-menu-bundle": "Used by the BreadcrumbMenuBuilder"
+    },
     "autoload": {
         "psr-0": { "Sonata\\SeoBundle": "" }
     },
