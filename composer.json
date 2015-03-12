@@ -28,8 +28,8 @@
     },
     "require-dev": {
         "guzzle/guzzle": "3.*",
-        "rmzamora/block-bundle": "~2.3",
-        "rmzamora/admin-bundle": "~2.3"
+        "rmzamora/block-bundle": "2.4.*",
+        "rmzamora/admin-bundle": "2.4.*"
     },
     "suggest": {
         "guzzle/guzzle": "3.*",
@@ -41,7 +41,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-1.2": "1.2-dev"
+            "dev-master": "1.2-dev"
         }
     }
 }
