@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Symfony SonataSeoBundle rmzamora forked",
     "keywords": ["seo", "sonata", "rmzamora forked"],
-    "homepage": "http://sonata-project.org/bundles/seo",
+    "homepage": "https://sonata-project.org/bundles/seo",
     "license": "MIT",
     "authors": [
         {
@@ -14,7 +14,7 @@
         {
             "name": "Thomas Rabaix",
             "email": "thomas.rabaix@sonata-project.org",
-            "homepage": "http://sonata-project.org"
+            "homepage": "https://sonata-project.org"
         },
         {
             "name": "Sonata Community",
