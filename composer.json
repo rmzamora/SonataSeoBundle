@@ -22,13 +22,16 @@
         }
     ],
     "require": {
-        "symfony/symfony": "~2.4",
+        "symfony/framework-bundle": "~2.4",
+        "symfony/options-resolver": "~2.4",
         "sonata-project/exporter": ">=1.2.2,<2.0",
+        "rmzamora/block-bundle": "2.4.*",
         "twig/twig": "*"
     },
     "require-dev": {
         "guzzle/guzzle": "3.*",
-        "rmzamora/block-bundle": "2.4.*",
+        "symfony/console": "~2.4",
+        "symfony/finder": "~2.4",
         "rmzamora/admin-bundle": "2.4.*"
     },
     "suggest": {
