@@ -39,6 +39,8 @@
         "sonata-project/block-bundle": "Allows you to use SEO friendly blocks",
         "knplabs/knp-menu-bundle": "Used by the BreadcrumbMenuBuilder"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": { "Sonata\\SeoBundle\\": "" }
     },
