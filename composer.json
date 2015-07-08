@@ -25,14 +25,14 @@
         "symfony/framework-bundle": "~2.4",
         "symfony/options-resolver": "~2.4",
         "sonata-project/exporter": ">=1.2.2,<2.0",
-        "rmzamora/block-bundle": "2.4.*",
-        "twig/twig": "*"
+        "twig/twig": "*",
+        "rmzamora/block-bundle": "2.4.1.*"
     },
     "require-dev": {
         "guzzle/guzzle": "3.*",
         "symfony/console": "~2.4",
         "symfony/finder": "~2.4",
-        "rmzamora/admin-bundle": "2.4.*"
+        "rmzamora/admin-bundle": "2.4.1.*"
     },
     "suggest": {
         "guzzle/guzzle": "3.*",
@@ -46,7 +46,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0.x-dev"
+            "dev-2.0.1": "2.0.1.x-dev"
         }
     }
 }
