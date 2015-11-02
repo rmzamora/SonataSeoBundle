@@ -24,6 +24,9 @@ use Symfony\Component\HttpFoundation\Response;
  */
 abstract class BaseTwitterButtonBlockService extends BaseBlockService
 {
+    /**
+     * @var string[]
+     */
     protected $languageList = array(
         'fr'    => 'fr',
         'en'    => 'en',
@@ -78,12 +81,5 @@ abstract class BaseTwitterButtonBlockService extends BaseBlockService
             'block'    => $blockContext->getBlock(),
             'settings' => $settings,
         ), $response);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
-    {
     }
 }
