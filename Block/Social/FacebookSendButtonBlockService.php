@@ -13,6 +13,7 @@ namespace Sonata\SeoBundle\Block\Social;
 
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\BlockBundle\Model\BlockInterface;
+use Sonata\CoreBundle\Model\Metadata;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -45,19 +46,35 @@ class FacebookSendButtonBlockService extends BaseFacebookSocialPluginsBlockServi
     {
         $formMapper->add('settings', 'sonata_type_immutable_array', array(
             'keys' => array(
-                array('url',         'url',      array('required' => false)),
-                array('width',       'integer',  array('required' => false)),
-                array('height',      'integer',  array('required' => false)),
-                array('colorscheme', 'choice',   array('required' => true, 'choices' => $this->colorschemeList)),
+                array('url', 'url', array(
+                    'required' => false,
+                    'label'    => 'form.label_url',
+                )),
+                array('width', 'integer', array(
+                    'required' => false,
+                    'label'    => 'form.label_width',
+                )),
+                array('height', 'integer', array(
+                    'required' => false,
+                    'label'    => 'form.label_height',
+                )),
+                array('colorscheme', 'choice', array(
+                    'required' => true,
+                    'choices'  => $this->colorschemeList,
+                    'label'    => 'form.label_colorscheme',
+                )),
             ),
+            'translation_domain' => 'SonataSeoBundle',
         ));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockMetadata($code = null)
     {
-        return 'Facebook Social Plugin - Send button';
+        return new Metadata($this->getName(), (!is_null($code) ? $code : $this->getName()), false, 'SonataSeoBundle', array(
+            'class' => 'fa fa-facebook-official',
+        ));
     }
 }
