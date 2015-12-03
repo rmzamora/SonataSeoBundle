@@ -22,16 +22,18 @@
         }
     ],
     "require": {
-        "symfony/framework-bundle": "~2.4",
-        "symfony/options-resolver": "~2.4",
-        "sonata-project/exporter": ">=1.2.2,<2.0",
+        "symfony/framework-bundle": "~2.3|~3.0",
+        "symfony/options-resolver": "~2.3|~3.0",
+        "sonata-project/exporter": "~1.2,>=1.2.2",
         "rmzamora/block-bundle": "2.5.0.*",
-        "twig/twig": "*"
+        "twig/twig": "~1.12"
     },
     "require-dev": {
         "guzzle/guzzle": "3.*",
-        "symfony/console": "~2.4",
-        "symfony/finder": "~2.4",
+        "symfony/console": "~2.3|~3.0",
+        "symfony/finder": "~2.3|~3.0",
+        "symfony/phpunit-bridge": "~2.7|~3.0",
+        "fabpot/php-cs-fixer": "~0.5|~1.0",
         "rmzamora/admin-bundle": "2.5.0.*"
     },
     "suggest": {
