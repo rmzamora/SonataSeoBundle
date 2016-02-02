@@ -28,7 +28,7 @@ class SonataSeoExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
-        if (isset($bundles['SonataBlockBundle'])) {
+        if (isset($bundles['SonataBlockBundle']) && isset($bundles['KnpMenuBundle'])) {
             $loader->load('blocks.xml');
         }
 
@@ -70,7 +70,13 @@ class SonataSeoExtension extends Extension
     protected function configureSitemap(array $config, ContainerBuilder $container)
     {
         $source = $container->getDefinition('sonata.seo.sitemap.manager');
-        $source->setScope(ContainerInterface::SCOPE_PROTOTYPE);
+
+        if (method_exists($source, 'setShared')) { // Symfony 2.8+
+            $source->setShared(false);
+        } else {
+            // For Symfony <2.8 compatibility
+            $source->setScope(ContainerInterface::SCOPE_PROTOTYPE);
+        }
 
         foreach ($config['doctrine_orm'] as $pos => $sitemap) {
             // define the connectionIterator

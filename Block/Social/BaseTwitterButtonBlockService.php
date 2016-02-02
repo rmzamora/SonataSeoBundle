@@ -13,8 +13,6 @@ namespace Sonata\SeoBundle\Block\Social;
 
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Model\BlockInterface;
-use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -24,6 +22,9 @@ use Symfony\Component\HttpFoundation\Response;
  */
 abstract class BaseTwitterButtonBlockService extends BaseBlockService
 {
+    /**
+     * @var string[]
+     */
     protected $languageList = array(
         'fr'    => 'fr',
         'en'    => 'en',
@@ -78,12 +79,5 @@ abstract class BaseTwitterButtonBlockService extends BaseBlockService
             'block'    => $blockContext->getBlock(),
             'settings' => $settings,
         ), $response);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
-    {
     }
 }

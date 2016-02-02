@@ -15,9 +15,9 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
-use Sonata\CoreBundle\Validator\ErrorElement;
+use Sonata\CoreBundle\Model\Metadata;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Pinterest pin button integration.
@@ -31,7 +31,7 @@ class PinterestPinButtonBlockService extends BaseBlockService
     /**
      * {@inheritdoc}
      */
-    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'template'    => 'SonataSeoBundle:Block:block_pinterest_pin_button.html.twig',
@@ -50,18 +50,32 @@ class PinterestPinButtonBlockService extends BaseBlockService
     {
         $formMapper->add('settings', 'sonata_type_immutable_array', array(
             'keys' => array(
-                array('url', 'url', array('required' => false)),
-                array('image', 'text', array('required' => false)),
-                array('description', 'text', array('required' => false)),
-                array('size', 'integer', array('required' => false)),
+                array('url', 'url', array(
+                    'required' => false,
+                    'label'    => 'form.label_url',
+                )),
+                array('image', 'text', array(
+                    'required' => false,
+                    'label'    => 'form.label_image',
+                )),
+                array('description', 'text', array(
+                    'required' => false,
+                    'label'    => 'form.label_description',
+                )),
+                array('size', 'integer', array(
+                    'required' => false,
+                    'label'    => 'form.label_size',
+                )),
                 array('shape', 'choice', array(
                     'required' => false,
                     'choices'  => array(
-                        'rectangular' => 'rectangular',
-                        'round'       => 'round',
+                        'rectangular' => 'form.label_shape_rectangular',
+                        'round'       => 'form.label_shape_round',
                     ),
+                    'label' => 'form.label_shape',
                 )),
             ),
+            'translation_domain' => 'SonataSeoBundle',
         ));
     }
 
@@ -82,15 +96,10 @@ class PinterestPinButtonBlockService extends BaseBlockService
     /**
      * {@inheritdoc}
      */
-    public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
+    public function getBlockMetadata($code = null)
     {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'Pinterest - Pin button';
+        return new Metadata($this->getName(), (!is_null($code) ? $code : $this->getName()), false, 'SonataSeoBundle', array(
+            'class' => 'fa fa-pinterest-p',
+        ));
     }
 }

@@ -15,9 +15,9 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
-use Sonata\CoreBundle\Validator\ErrorElement;
+use Sonata\CoreBundle\Model\Metadata;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * This block offers a button to share current page by email.
@@ -29,7 +29,7 @@ class EmailShareButtonBlockService extends BaseBlockService
     /**
      * {@inheritdoc}
      */
-    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'template' => 'SonataSeoBundle:Block:block_email_share_button.html.twig',
@@ -45,9 +45,16 @@ class EmailShareButtonBlockService extends BaseBlockService
     {
         $formMapper->add('settings', 'sonata_type_immutable_array', array(
             'keys' => array(
-                array('subject', 'text', array('required' => false)),
-                array('body', 'text', array('required' => false)),
+                array('subject', 'text', array(
+                    'required' => false,
+                    'label'    => 'form.label_subject',
+                )),
+                array('body', 'text', array(
+                    'required' => false,
+                    'label'    => 'form.label_body',
+                )),
             ),
+            'translation_domain' => 'SonataSeoBundle',
         ));
     }
 
@@ -68,15 +75,10 @@ class EmailShareButtonBlockService extends BaseBlockService
     /**
      * {@inheritdoc}
      */
-    public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
+    public function getBlockMetadata($code = null)
     {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'Email - Share button';
+        return new Metadata($this->getName(), (!is_null($code) ? $code : $this->getName()), false, 'SonataSeoBundle', array(
+            'class' => 'fa fa-envelope-o',
+        ));
     }
 }

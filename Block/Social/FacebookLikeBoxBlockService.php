@@ -13,7 +13,8 @@ namespace Sonata\SeoBundle\Block\Social;
 
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\BlockBundle\Model\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Sonata\CoreBundle\Model\Metadata;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Facebook like box integration.
@@ -27,7 +28,7 @@ class FacebookLikeBoxBlockService extends BaseFacebookSocialPluginsBlockService
     /**
      * {@inheritdoc}
      */
-    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'template'    => 'SonataSeoBundle:Block:block_facebook_like_box.html.twig',
@@ -49,23 +50,51 @@ class FacebookLikeBoxBlockService extends BaseFacebookSocialPluginsBlockService
     {
         $formMapper->add('settings', 'sonata_type_immutable_array', array(
             'keys' => array(
-                array('url',         'url',      array('required' => false)),
-                array('width',       'integer',  array('required' => false)),
-                array('height',      'integer',  array('required' => false)),
-                array('colorscheme', 'choice',   array('required' => true, 'choices' => $this->colorschemeList)),
-                array('show_faces',  'checkbox', array('required' => false)),
-                array('show_header', 'checkbox', array('required' => false)),
-                array('show_posts',  'checkbox', array('required' => false)),
-                array('show_border', 'checkbox', array('required' => false)),
+                array('url', 'url', array(
+                    'required' => false,
+                    'label'    => 'form.label_url',
+                )),
+                array('width', 'integer', array(
+                    'required' => false,
+                    'label'    => 'form.label_width',
+                )),
+                array('height', 'integer', array(
+                    'required' => false,
+                    'label'    => 'form.label_height',
+                )),
+                array('colorscheme', 'choice', array(
+                    'required' => true,
+                    'choices'  => $this->colorschemeList,
+                    'label'    => 'form.label_colorscheme',
+                )),
+                array('show_faces', 'checkbox', array(
+                    'required' => false,
+                    'label'    => 'form.label_show_faces',
+                )),
+                array('show_header', 'checkbox', array(
+                    'required' => false,
+                    'label'    => 'form.label_show_header',
+                )),
+                array('show_posts', 'checkbox', array(
+                    'required' => false,
+                    'label'    => 'form.label_show_posts',
+                )),
+                array('show_border', 'checkbox', array(
+                    'required' => false,
+                    'label'    => 'form.label_show_border',
+                )),
             ),
+            'translation_domain' => 'SonataSeoBundle',
         ));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockMetadata($code = null)
     {
-        return 'Facebook Social Plugin - Like box';
+        return new Metadata($this->getName(), (!is_null($code) ? $code : $this->getName()), false, 'SonataSeoBundle', array(
+            'class' => 'fa fa-facebook-official',
+        ));
     }
 }

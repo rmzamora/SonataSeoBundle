@@ -17,7 +17,7 @@ use Knp\Menu\Provider\MenuProviderInterface;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\Service\MenuBlockService;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Abstract class for breadcrumb menu services.
@@ -72,7 +72,7 @@ abstract class BaseBreadcrumbMenuBlockService extends MenuBlockService
     }
 
     /**
-     * @return \Knp\Menu\FactoryInterface
+     * @return FactoryInterface
      */
     protected function getFactory()
     {
@@ -90,13 +90,14 @@ abstract class BaseBreadcrumbMenuBlockService extends MenuBlockService
     /**
      * {@inheritdoc}
      */
-    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    public function configureSettings(OptionsResolver $resolver)
     {
-        parent::setDefaultSettings($resolver);
+        parent::configureSettings($resolver);
 
         $resolver->setDefaults(array(
             'menu_template'         => 'SonataSeoBundle:Block:breadcrumb.html.twig',
             'include_homepage_link' => true,
+            'context'               => false,
         ));
     }
 
