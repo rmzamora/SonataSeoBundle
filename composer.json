@@ -32,17 +32,14 @@
         "guzzle/guzzle": "3.*",
         "symfony/console": "~2.3|~3.0",
         "symfony/finder": "~2.3|~3.0",
-        "symfony/phpunit-bridge": "~2.7|~3.0",
-        "fabpot/php-cs-fixer": "~0.5|~1.0",
-        "rmzamora/admin-bundle": "2.5.0.*"
+        "rmzamora/admin-bundle": "2.5.0.*",
+        "symfony/phpunit-bridge": "^2.7 || ^3.0",
+        "sllh/php-cs-fixer-styleci-bridge": "^2.0"
     },
     "suggest": {
         "guzzle/guzzle": "3.*",
-        "sonata-project/block-bundle": "Allows you to use SEO friendly blocks",
         "knplabs/knp-menu-bundle": "Used by the BreadcrumbMenuBuilder"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": { "Sonata\\SeoBundle\\": "" }
     },
